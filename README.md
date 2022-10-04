@@ -22,7 +22,7 @@ docker-compose up
 docker exec -it rebinding_node_1 sh
 ```
 
-3. The _node_ container will have the `vuln` directory attached to `/home/node/vuln`; ALSO MAKE SURE YOU INSTALL THE NPM DEPENDENCIES (`npm install`)
+3. The _node_ container will have the `vuln` directory attached to `/home/node/vuln`; ALSO MAKE SURE YOU INSTALL THE NPM DEPENDENCIES OUTSIDE OF THE CONTAINER (`npm install`)
 
 4. Do yo testing!
 
