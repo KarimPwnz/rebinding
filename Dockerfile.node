@@ -1,0 +1,10 @@
+FROM node:alpine
+
+RUN apk update && \
+    apk add curl iptables
+
+# Drop example.com IP for quick failure if fetched
+# Set DNS nameserver to rbndr
+CMD iptables -I OUTPUT -d 93.184.216.34 -j REJECT && \ 
+    printf "nameserver 127.0.0.1" > /etc/resolv.conf && \
+    tail -f /dev/null

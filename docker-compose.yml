@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  rbndr:
+    build:
+      context: .
+      dockerfile: Dockerfile.rbndr
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    network_mode: service:rbndr # be localhost web
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    network_mode: service:rbndr # have same IP for dns resolution and localhost web
+    cap_add:
+      - NET_ADMIN # for iptables
+    volumes:
+      - ./vuln:/home/node/vuln
+
+networks:
+  default:
+    internal: true # why not... dns resolution broken anyway
